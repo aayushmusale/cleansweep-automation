@@ -251,7 +251,7 @@ def main():
         <directory_path> : Path to directory to clean (runs scheduled cleanup)
     
     Scheduling:
-        - Runs cleanup every 1 minute when directory path is provided
+        - Runs cleanup every 1 hour when directory path is provided
         - Continues running until manually stopped (Ctrl+C)
     """
     # Display header
@@ -278,7 +278,7 @@ def main():
             print("- Automatic deletion of duplicate files")
             print("- Detailed log file generation")
             print("- Email notification with log attachment")
-            print("- Scheduled execution every minute")
+            print("- Scheduled execution every hour")
             
         # Usage flag
         elif arg in ['--u', '--U']:
@@ -293,7 +293,7 @@ def main():
             print()
             print("Notes:")
             print("- Provide absolute or relative directory path")
-            print("- Script will run continuously, checking every minute")
+            print("- Script will run continuously, checking every hour")
             print("- Press Ctrl+C to stop the script")
             print("- Ensure email credentials are configured in the script")
             
@@ -301,12 +301,12 @@ def main():
         else:
             directory_path = arg
             print(f"Starting automated cleanup for directory: {directory_path}")
-            print("Cleanup will run every 1 minute...")
+            print("Cleanup will run every 1 hour...")
             print("Press Ctrl+C to stop the automation")
             print()
             
-            # Schedule the cleanup task to run every minute
-            schedule.every(1).minute.do(DeleteDuplicates, directory_path)
+            # Schedule the cleanup task to run every hour
+            schedule.every(1).hour.do(DeleteDuplicates, directory_path)
 
             try:
                 # Keep the script running and execute scheduled tasks
